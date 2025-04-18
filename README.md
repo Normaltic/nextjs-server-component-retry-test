@@ -1,36 +1,16 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js 서버 컴포넌트 에러 처리 테스트
 
-## Getting Started
+서버 컴포넌트에서 발생한 에러를 처리하는 몇 가지 방법에 대한 테스트
 
-First, run the development server:
+[블로그 글](https://blog.yunji.kim/error_handling_try_in_nextjs.draft)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. 클라이언트 컴포넌트로 처리 ( `ClientRandomNumber.tsx` )
+2. 동일한 기능의 서버 컴포넌트와 클라이언트 컴포넌트로 처리 ( `ServerRandomNumber.tsx` + `ClientRandomNumber.tsx` )
+3. 추상화 시도 ( `ServerRender.tsx` + `ClientRender.tsx` )
+4. `router.refresh`를 통한 서버 컴포넌트 리렌더링 ( `ErrorBoundary.tsx` + `Fallback.tsx` )
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 참고
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Error handling and retry with React Server Components](https://edspencer.net/2024/7/16/errors-and-retry-with-react-server-components)
+- [전역 상태관리를 사용하지 않을 때, Next.js14 router.refresh()](https://velog.io/@fenjo/전역-상태관리를-하지-않을-때-router.refresh)
+- [[Next.js] `error.tsx`를 활용한 오류 처리 및 복구 방법](https://velog.io/@pcwadarong/Next.js-error.tsx를-활용한-오류-처리-및-복구-방법)

@@ -1,4 +1,4 @@
-import ClientRandomNumber from "@/components/ClientRandomNumber";
+import ServerRandomNumber from "@/components/ServerRandomNumber";
 
 export default async function Home() {
   return (
@@ -7,7 +7,7 @@ export default async function Home() {
         <div className="col-span-2 bg-green-400"></div>
         <div className="col-span-1 bg-green-400"></div>
         <div className="col-span-1 border-1">
-          <ClientRandomNumber className="w-full h-full flex justify-center items-center" />
+          <ServerRandomNumber className="w-full h-full flex justify-center items-center" />
         </div>
       </main>
     </div>

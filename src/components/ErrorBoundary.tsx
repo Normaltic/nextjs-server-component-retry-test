@@ -4,33 +4,43 @@ import { Component, ErrorInfo } from "react";
 
 export interface ErrorBoundaryProps {
   children: React.ReactNode;
-  fallback: React.ReactNode;
+  Fallback: React.ComponentType<{ reset: () => void; error: Error }>;
 }
 
-export default class ErrorBoundary extends Component<ErrorBoundaryProps> {
-  state = {
-    hasError: false
-  };
+export interface ErrorBoundaryState {
+  error: Error | undefined;
+}
 
+export default class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = {
-      hasError: false
+      error: undefined
     };
+
+    this.reset = this.reset.bind(this);
   }
 
   static getDerivedStateFromError(error: Error) {
-    return { hasError: true };
+    return { error };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.error(error, errorInfo);
   }
 
+  reset() {
+    this.setState({ error: undefined });
+  }
+
   render() {
-    if (this.state.hasError) {
-      return this.props.fallback;
+    const { Fallback, children } = this.props;
+    if (this.state.error) {
+      return <Fallback reset={this.reset} error={this.state.error} />;
     }
-    return this.props.children;
+    return children;
   }
 }

@@ -1,29 +1,21 @@
 import ClientRandomNumber from "./ClientRandomNumber";
+import Number from "./Number";
+import { getRandomNumber } from "@/utils/getRandomNumber";
 
 export interface ServerRandomNumberProps {
   className?: string;
 }
 
-async function fetching() {
-  await new Promise<void>((res) => {
-    setTimeout(() => res(), 1500);
-  });
-
-  const rand = Math.floor(Math.random() * 10);
-  if (rand > 4) return rand;
-  else throw new Error("error");
-}
-
 export default async function ServerRandomNumber({
   className
 }: ServerRandomNumberProps) {
-  let number: Awaited<ReturnType<typeof fetching>> | undefined;
+  let number: Awaited<ReturnType<typeof getRandomNumber>> | undefined;
 
   try {
-    number = await fetching();
+    number = await getRandomNumber();
   } catch {
     return <ClientRandomNumber className={className} />;
   }
 
-  return <div className={className}>{number}</div>;
+  return <Number className={className} number={number} />;
 }

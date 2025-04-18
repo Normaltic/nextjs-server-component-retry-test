@@ -1,19 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getRandomNumber } from "@/utils/getRandomNumber";
+
+import Number from "./Number";
 
 export interface ClientRandomNumberProps {
   className?: string;
-}
-
-async function fetching() {
-  await new Promise<void>((res) => {
-    setTimeout(() => res(), 1500);
-  });
-
-  const rand = Math.floor(Math.random() * 10);
-  if (rand > 4) return rand;
-  else throw new Error("error");
 }
 
 export default function ClientRandomNumber({
@@ -27,7 +20,7 @@ export default function ClientRandomNumber({
     try {
       setLoading(true);
       setError(undefined);
-      const response = await fetching();
+      const response = await getRandomNumber();
       setNumber(response);
     } catch (e) {
       setError(e as Error);
@@ -53,5 +46,5 @@ export default function ClientRandomNumber({
     );
   }
 
-  return <div className={className}>{number}</div>;
+  return <Number className={className} number={number} />;
 }

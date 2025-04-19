@@ -1,8 +1,8 @@
-# Next.js 서버 컴포넌트 에러 처리 테스트
+# Next.js 서버 컴포넌트 렌더링 에러 재시도 테스트
 
-서버 컴포넌트에서 발생한 에러를 처리하는 몇 가지 방법에 대한 테스트
+서버 컴포넌트에서 에러가 발생했을 때 리렌더링을 처리하는 몇 가지 방법에 대한 테스트
 
-[블로그 글](https://blog.yunji.kim/error_handling_try_in_nextjs.draft)
+[블로그 글](https://blog.yunji.kim/retry_server_component_in_nextjs)
 
 1. 클라이언트 컴포넌트로 처리 ( `ClientRandomNumber.tsx` )
 2. 동일한 기능의 서버 컴포넌트와 클라이언트 컴포넌트로 처리 ( `ServerRandomNumber.tsx` + `ClientRandomNumber.tsx` )

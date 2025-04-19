@@ -1,6 +1,5 @@
-import Number from "./Number";
-
 import { getRandomNumber } from "@/utils/getRandomNumber";
+import Number from "./Number";
 
 export interface RandomNumberProps {
   className?: string;

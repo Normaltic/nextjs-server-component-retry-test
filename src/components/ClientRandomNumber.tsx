@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getRandomNumber } from "@/utils/getRandomNumber";
 
 import Number from "./Number";
@@ -16,7 +16,7 @@ export default function ClientRandomNumber({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error>();
 
-  const fetch = async () => {
+  const fetch = useCallback(async () => {
     try {
       setLoading(true);
       setError(undefined);
@@ -27,18 +27,18 @@ export default function ClientRandomNumber({
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetch();
-  }, []);
+  }, [fetch]);
 
   if (loading) {
     return <div className={className}>Loading...</div>;
   }
   if (number === undefined || error) {
     return (
-      <div className="w-full h-full flex justify-center items-center">
+      <div className={`${className ?? ""} bg-red-400`}>
         <button type="button" onClick={fetch}>
           Refresh
         </button>

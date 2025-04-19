@@ -1,6 +1,6 @@
+import { getRandomNumber } from "@/utils/getRandomNumber";
 import ClientRandomNumber from "./ClientRandomNumber";
 import Number from "./Number";
-import { getRandomNumber } from "@/utils/getRandomNumber";
 
 export interface ServerRandomNumberProps {
   className?: string;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export default function ClientRender<T>({
   fetcher,
@@ -13,7 +13,7 @@ export default function ClientRender<T>({
   const [error, setError] = useState<Error | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
-  const fetch = async () => {
+  const fetch = useCallback(async () => {
     try {
       setLoading(true);
       setError(undefined);
@@ -24,15 +24,19 @@ export default function ClientRender<T>({
     } finally {
       setLoading(false);
     }
-  };
+  }, [fetcher]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        Loading...
+      </div>
+    );
   }
 
   if (!data || error) {
     return (
-      <div className="w-full h-full flex justify-center items-center">
+      <div className="w-full h-full flex justify-center items-center bg-red-400">
         <button type="button" onClick={fetch}>
           Refresh
         </button>
